@@ -1,0 +1,37 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity compx4 is
+port (
+	A : in std_logic_vector(3 downto 0);
+	B : in std_logic_vector(3 downto 0);
+	A_GREATER : out std_logic;
+	B_GREATER : out std_logic;
+	EQUAL : out std_logic
+);
+
+end compx4;
+
+architecture adding of full_adder_4bit is
+
+---COMPONENTS---
+component full_adder_1bit port (
+		INPUT_B : in std_logic;
+		INPUT_A : in std_logic;
+		CARRY_IN : in std_logic;
+		FULL_ADDER_CARRY_OUTPUT : out std_logic;
+		FULL_ADDER_SUM_OUTPUT : out std_logic
+	);
+	end component;
+	
+	signal carry_over : std_logic_vector(2 downto 0);
+
+begin 
+
+	INST1: full_adder_1bit port map(BUS0(0), BUS1(0), Carry_In_4bit, carry_over(0) ,SUM(0));
+	INST2: full_adder_1bit port map(BUS0(1), BUS1(1), carry_over(0), carry_over(1) ,SUM(1));
+	INST3: full_adder_1bit port map(BUS0(2), BUS1(2), carry_over(1), carry_over(2) ,SUM(2));
+	INST4: full_adder_1bit port map(BUS0(3), BUS1(3), carry_over(2), Carry_Out(3) ,SUM(3));
+	
+				  
+end adding;

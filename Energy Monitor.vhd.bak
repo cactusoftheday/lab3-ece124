@@ -1,0 +1,10 @@
+library IEEE;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity EnergyMonitor is
+
+	port
+	(
+		vacation_mode : in std_logic;
+	);
